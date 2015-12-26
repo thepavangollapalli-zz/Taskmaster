@@ -42,14 +42,38 @@ class LoginView(generic.View):
     def post(self, request):
         global currentUser
         name = request.POST["name"]
-        if(not User.objects.filter(user_name=name).exists()):
-            user = User(user_name = name)
-        else:
+        if(User.objects.filter(user_name=name).exists()):
             user = User.objects.get(user_name = name)
+            if(user.password != request.POST["password"]):
+                return render(request, "todo/login.html", {"error": "Incorrect password!"})
+            user.save()
+            currentUser = user
+            print(currentUser.user_name)
+            return HttpResponseRedirect(reverse("todo:index"))
+        else:
+            return render(request, "todo/login.html", {"error": "You need to sign up. Click the 'new user' button to get started!"})
+
+class RegisterView(generic.View):
+    def get(self, request):
+        return render(request, 'todo/register.html')
+
+    def post(self, request):
+        global currentUser
+        user_name = request.POST["name"]
+        password = request.POST["password"]
+        if(User.objects.filter(user_name=user_name).exists()):
+            return render(request, "todo/register.html", {"error":"This user already exists!"})
+        user = User(user_name = user_name, password = password)
         user.save()
         currentUser = user
-        print(currentUser.user_name)
         return HttpResponseRedirect(reverse("todo:index"))
+
+def removeAccount(request):
+    global currentUser
+    user = User.objects.get(user_name=currentUser.user_name)
+    user.delete()
+    currentUser = None
+    return HttpResponseRedirect(reverse("todo:login"))
 
 def editView(request):
     global currentUser

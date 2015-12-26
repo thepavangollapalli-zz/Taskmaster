@@ -9,5 +9,7 @@ urlpatterns = [
     url(r'^update/', views.update, name="update"),
     url(r'^edit/', views.editView, name="edit"),
     url(r'^delete/', views.delete, name="delete"),
-    url(r'^login/', views.LoginView.as_view(), name="login")
+    url(r'^login/', views.LoginView.as_view(), name="login"),
+    url(r'^register/', views.RegisterView.as_view(), name="register"),
+    url(r'^removeAccount/', views.removeAccount, name="removeAccount"),
 ]

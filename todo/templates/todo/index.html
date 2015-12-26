@@ -42,5 +42,7 @@
         <a href="{% url 'todo:add' %}">Add a task</a>
         <br /><br />
         <a href="{% url 'todo:login' %}">Logout</a>
+        <br /><br />
+        <a href="{% url 'todo:removeAccount' %}" onclick="return confirm('Are you sure?');">Delete Account</a>
     </body>
 </html>
