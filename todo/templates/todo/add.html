@@ -1,0 +1,21 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <link href="{% static 'todo/form.css' %}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <h1>Add a task</h1>
+        <a href="{% url 'todo:index' %}">back</a>
+        <form action="{% url 'todo:add' %}" method="post">
+        {% csrf_token %}
+            <input type="text" name="task">
+            <br />
+            <input type="radio" name="priority" value="1" required>Low
+            <input type="radio" name="priority" value="2" required>Medium
+            <input type="radio" name="priority" value="3" required>High
+            <br />
+            <textarea rows="4" cols="50" name="description"></textarea>
+            </br />
+            <input type="submit" value="Add task">
+        </form>
+    </body>

@@ -1,0 +1,15 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <link href="{% static 'todo/form.css' %}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <h1>Task Manager</h1>
+        <form action="{% url 'todo:login' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Enter your name">
+            <br />
+            <input type="submit" value="Show me my tasks">
+        </form>
+    </body>
+</html>

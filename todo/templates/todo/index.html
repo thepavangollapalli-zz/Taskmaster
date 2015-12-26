@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <link href="{% static 'todo/index.css' %}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <h1>Tasks - 
+        {% for task in tasks %}
+            {% if task.getClass == "User" %}
+                {{ task.user_name }}
+            {% endif %}
+        {% endfor %}
+        </h1>
+        <div class="todo">
+            <ul>
+                {% for task in tasks %}
+                    {% if task.getClass == "Task" %}
+                    <li>
+                        <div>
+                        <form method="post" action="{% url 'todo:edit' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="task" value="{{ task.task_name }}">
+                            <input type="submit" value="{{ task.task_name }}" class="edit">
+                        </form></div>
+                        <p class="priority">
+                            <!-- {{ task.priority }} -->
+                            {% if task.priority == 1 %}
+                                Low
+                            {% elif task.priority == 2 %}
+                                Medium
+                            {% else%}
+                                High
+                            {% endif %} 
+                        </p>
+                        <p class="description">{{ task.description }}</p>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+                </form>
+            </ul>
+        </div>
+        <a href="{% url 'todo:add' %}">Add a task</a>
+        <br /><br />
+        <a href="{% url 'todo:login' %}">Logout</a>
+    </body>
+</html>

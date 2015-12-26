@@ -1,0 +1,48 @@
+h1 {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight:200;
+    font-size:40px;
+}
+
+a {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight:200;
+}
+
+ul {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight:200;
+    padding:0;
+    list-style: none;
+    display:inline-block;
+}
+
+input[type=submit]{
+    padding:0px 5px 0px 0px; 
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight:200;
+    font-size:30px;
+    background:#fff; 
+    border:0 none;
+    cursor:pointer;
+    text-decoration:underline;
+    text-align: left;
+}
+
+input[type=submit]:focus{
+    outline:0;
+}
+
+form{
+    margin-bottom:10px;
+}
+
+.priority{
+    margin:0px 0px;
+    font-size:20;
+    color:#ccc;
+}
+
+.description{
+    margin:5px 0px;
+}
