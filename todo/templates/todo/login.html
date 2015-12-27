@@ -4,16 +4,18 @@
         <link href="{% static 'todo/form.css' %}" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <h1>Task Manager</h1>
-        {% if error %} {{ error }} {% endif %}
-        <form action="{% url 'todo:login' %}" method="post">
-            {% csrf_token %}
-            <input type="text" name="name" placeholder="Enter your name">
-            <br />
-            <input type="password" name="password" placeholder="Enter your password">
-            <br />
-            <input type="submit" value="Show me my tasks">
-        </form>
-        <a href="{% url 'todo:register' %}">New user?</a>
+        <div class="form_container">
+            <h1>Task Manager</h1>
+            {% if error %} <p>{{ error }}</p> {% endif %}
+            <form action="{% url 'todo:login' %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Enter your name">
+                <br />
+                <input type="password" name="password" placeholder="Enter your password">
+                <br />
+                <input type="submit" value="Show me my tasks">
+            </form>
+            <a href="{% url 'todo:register' %}">New user?</a>
+        </div>
     </body>
 </html>

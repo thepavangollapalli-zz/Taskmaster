@@ -4,7 +4,19 @@ h1 {
     font-size:40px;
 }
 
-a, p {
+body{
+    text-align: center;
+}
+.form_container{
+    border:1px solid black;
+    width:500px;
+    height:400px;
+    display:block;
+    margin:auto;
+
+}
+
+a, p{
     font-family: "Helvetica Neue", Arial, sans-serif;
     font-weight:200;
 }
