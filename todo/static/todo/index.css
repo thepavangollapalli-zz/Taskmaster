@@ -1,3 +1,20 @@
+body{
+    text-align: center;    
+}
+
+.task-view{
+    height:auto;
+    width:600px;
+    border:1px solid black;
+    margin:auto;
+    padding-bottom:3%;
+}
+
+.todo{
+    text-align: left;
+    padding-left:10%;
+}
+
 h1 {
     font-family: "Helvetica Neue", Arial, sans-serif;
     font-weight:200;
