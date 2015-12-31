@@ -13,7 +13,6 @@ class Index(generic.View):
         tasks = currentUser.task_set.order_by("-priority")
         new_set = list(tasks)
         a = new_set.append(currentUser)
-        print(new_set)
         context = {"tasks": new_set}
         return render(request, 'todo/index.html', context)
 
@@ -61,8 +60,11 @@ class RegisterView(generic.View):
         global currentUser
         user_name = request.POST["name"]
         password = request.POST["password"]
+        print(request.POST["password"], password)
         if(User.objects.filter(user_name=user_name).exists()):
             return render(request, "todo/register.html", {"error":"This user already exists!"})
+        elif(request.POST["password"] != request.POST["confirm"]):
+            return render(request, "todo/register.html", {"error":"Passwords do not match!"})
         user = User(user_name = user_name, password = password)
         user.save()
         currentUser = user
@@ -79,6 +81,7 @@ def editView(request):
     global currentUser
     user = currentUser #User.objects.get(user_name = request.POST["name"])
     task = user.task_set.get(task_name = request.POST["task"])
+    print(task)
     context={"task" : task}
     return render(request, "todo/edit.html", context)
 
@@ -86,14 +89,15 @@ def update(request):
     global currentUser
     user = currentUser #request.POST["name"]
     task_name = request.POST["task"]
-    task = user.task_set.get(task_name = request.POST["old_task"])
-    if(task_name != task.task_name):
-        task.task_name = task_name
-    elif(request.POST["priority"] != task.priority):
-        task.priority = request.POST["priority"]
-    elif(request.POST["description"] != task.description):
-        task.description = request.POST["description"]
-    task.save()
+    if(not user.task_set.filter(task_name=task_name).exists()):
+        task = user.task_set.get(task_name = request.POST["old_task"])
+        if(task_name != task.task_name):
+            task.task_name = task_name
+        elif(request.POST["priority"] != task.priority):
+            task.priority = request.POST["priority"]
+        elif(request.POST["description"] != task.description):
+            task.description = request.POST["description"]
+        task.save()
     return HttpResponseRedirect(reverse("todo:index"))
 
 def delete(request):
