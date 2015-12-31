@@ -6,7 +6,6 @@
     <body>
         <div class="form_container">
             <h1>Edit {{ task.task_name }}</h1>
-
             <a href="{% url 'todo:index' %}">Back</a>
             <br />
             <form method="post" action="{% url 'todo:update' %}">
@@ -14,19 +13,19 @@
                 <input type="text" name="task" value="{{ task.task_name }}">
                 <br />
                 <input type="hidden" name="old_task" value="{{ task.task_name }}">
-                {% if task.priority == "1" %}
+                {% if task.priority == 1 %}
                     <input type="radio" name="priority" value="1" checked="checked"><p>Low</p>
                 {% else %}
                     <input type="radio" name="priority" value="1"><p>Low</p>
                 {% endif %}
 
-                {% if task.priority == "2" %}
+                {% if task.priority == 2 %}
                     <input type="radio" name="priority" value="2" checked="checked"><p>Medium</p>
                 {% else %}
                     <input type="radio" name="priority" value="2"><p>Medium</p>
                 {% endif %}
 
-                {% if task.priority == "3" %}
+                {% if task.priority == 3 %}
                     <input type="radio" name="priority" value="3" checked="checked"><p>High</p>
                 {% else %}
                     <input type="radio" name="priority" value="3"><p>High</p>
