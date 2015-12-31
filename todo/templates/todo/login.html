@@ -5,14 +5,14 @@
     </head>
     <body>
         <div class="form_container">
-            <h1>Task Manager</h1>
+            <h1>Taskmaster</h1>
             {% if error %} <p>{{ error }}</p> {% endif %}
             <form action="{% url 'todo:login' %}" method="post">
                 {% csrf_token %}
                 <input type="text" name="name" placeholder="Enter your name">
                 <br />
                 <input type="password" name="password" placeholder="Enter your password">
-                <br />
+                <br /><br />
                 <input type="submit" value="Show me my tasks">
             </form>
             <a href="{% url 'todo:register' %}">New user?</a>
